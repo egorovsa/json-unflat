@@ -4,7 +4,7 @@ var JsonUnFlat = (function () {
 	}
 
 	JsonUnFlat.unflat = function (json) {
-		var unflatten;
+		var unflatten = {};
 		var _loop_1 = function (item) {
 			var _this;
 			var splittedKey = item.split('.');

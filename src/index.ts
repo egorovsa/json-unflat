@@ -1,6 +1,6 @@
 export class JsonUnFlat {
 	static unflat(json: Object) {
-		let unflatten: Object;
+		let unflatten: Object = {};
 
 		for (let item in json) {
 			let _this;
