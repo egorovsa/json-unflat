@@ -1,0 +1,16 @@
+{
+	"name": "json-unflat",
+	"description": "Change flat keys json to tree",
+	"version": "1.0.0",
+	"main": "index.js",
+	"author": "Egorov Sergey",
+	"license": "MIT",
+	"devDependencies": {
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/egorovsa/json-unflat.git"
+	},
+	"dependencies": {
+	}
+}

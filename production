@@ -1,0 +1,4 @@
+#!/bin/sh
+cd "$(dirname "$0")"
+rm -rf index.d.ts
+tsc ./src/index.ts -d --jsx react --target ES5 --outDir ./
