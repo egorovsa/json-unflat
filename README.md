@@ -1,4 +1,4 @@
-# react-custom-scrollbar
+# json-unflat
 
 Convert flat json like:
 
