@@ -12,18 +12,20 @@ var JsonUnFlat = (function () {
 				if (i == 0) {
 					_this = unflatten;
 				}
-				if (!_this[keysPart]) {
-					if (splittedKey.length === i + 1) {
-						_this[keysPart] = json[item];
-					}
-					else {
-						_this[keysPart] = {};
-						_this = _this[keysPart];
-					}
-				}
-				else {
+				if (/__proto__/.test(keysPart) !== true) {
+				    if (!_this[keysPart]) {
+				      if (splittedKey.length === i + 1) {
+					_this[keysPart] = json[item];
+				      }
+				      else {
+					_this[keysPart] = {};
 					_this = _this[keysPart];
-				}
+				      }
+				    }
+				    else {
+				      _this = _this[keysPart];
+				    }
+				  }
 			});
 		};
 		for (var item in json) {
