@@ -12,7 +12,7 @@ var JsonUnFlat = (function () {
 				if (i == 0) {
 					_this = unflatten;
 				}
-				if (/__proto__/.test(keysPart) !== true) {
+				if (/(__proto__|prototype)/.test(keysPart) !== true) {
 				    if (!_this[keysPart]) {
 				      if (splittedKey.length === i + 1) {
 					_this[keysPart] = json[item];
