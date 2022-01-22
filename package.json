@@ -1,7 +1,7 @@
 {
 	"name": "json-unflat",
 	"description": "Change flat keys json to tree",
-	"version": "1.0.0",
+	"version": "2.0.0",
 	"main": "index.js",
 	"author": "Egorov Sergey",
 	"license": "MIT",
@@ -23,6 +23,9 @@
 	"scripts": {
 		"test": "jest",
 		"build": "./production",
-		"prepublish": ""
+		"prepare": "npm run test && npm run build",
+		"copyBuild": "cp ./build/* ./",
+		"prepublishOnly": "npm run copyBuild",
+		"postpublish": "git clean -df"
 	}
 }
