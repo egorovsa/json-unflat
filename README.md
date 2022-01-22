@@ -36,11 +36,6 @@ For TypeScript usage there is a index.d.ts in node_modules folder
 import {JsonUnFlat} from 'json-unflat';
 ```
 
-or
-
-```javascript
-var JsonUnFlat = require('json-unflat');
-```
 ## How to use
 ```typescript
     let json = {

@@ -1,38 +1,38 @@
-export class JsonUnFlat {
-	static unflat(json: Object) {
-		let unflatten: Object = {};
-
-		for (let item in json) {
-			let _this;
-			let splittedKey = item.split('.');
-
-			splittedKey.map(function (keysPart, i) {
-
-				if (i == 0) {
-					_this = unflatten;
-				}
-
-				if (!_this[keysPart]) {
-					if (splittedKey.length === i + 1) {
-						_this[keysPart] = json[item];
-					} else {
-
-
-						_this[keysPart] = {};
-						_this = _this[keysPart];
-					}
-
-				} else {
-					_this = _this[keysPart];
-				}
-			})
-		}
-
-		return unflatten;
-	}
+interface JsonData {
+	[key: string]: string | number | boolean;
 }
 
+function isPathIncludesIntoLongerOne(json: JsonData, key: string) {
+	return Object.keys(json).some(
+		(keyItem) => keyItem.includes(key) && key !== keyItem
+	);
+}
 
+export function JsonUnFlat(json: Record<string, string | number | boolean>) {
+	const unFlatten: Object = {};
 
+	Object.entries(json).forEach(([key, value]) => {
+		let branchLink: Record<string, any> = unFlatten;
 
+		if (isPathIncludesIntoLongerOne(json, key)) {
+			return;
+		}
 
+		const splittedKey = key.split('.');
+
+		splittedKey.forEach((splittedItem, index) => {
+			if (branchLink[splittedItem] === undefined) {
+				if (splittedKey.length - 1 === index) {
+					branchLink[splittedItem] = value;
+				} else {
+					branchLink[splittedItem] = {};
+					branchLink = branchLink[splittedItem];
+				}
+			} else {
+				branchLink = branchLink[splittedItem];
+			}
+		});
+	});
+
+	return unFlatten;
+}
