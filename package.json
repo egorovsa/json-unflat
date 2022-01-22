@@ -23,7 +23,7 @@
 	"scripts": {
 		"test": "jest",
 		"build": "./production",
-		"prepare": "npm run test && npm run build",
+		"prepare": "git stash -m \"Last changes\" && npm run test && npm run build",
 		"copyBuild": "cp ./build/* ./",
 		"prepublishOnly": "npm run copyBuild",
 		"postpublish": "git clean -df"
