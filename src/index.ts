@@ -4,7 +4,7 @@ interface JsonData {
 
 function isPathIncludesIntoLongerOne(json: JsonData, key: string) {
   return Object.keys(json).some(
-    (keyItem) => keyItem.includes(key) && key !== keyItem
+    (keyItem) => keyItem.includes(`${key}.`) && key !== keyItem
   );
 }
 
@@ -13,22 +13,23 @@ export function JsonUnFlat(json: Record<string, string | number | boolean>) {
 
   Object.entries(json).forEach(([key, value]) => {
     let branchLink: Record<string, any> = unFlatten;
-
+    
     if (isPathIncludesIntoLongerOne(json, key)) {
       return;
     }
-
+    
     const splittedKey = key.split(".");
 
     splittedKey.forEach((splittedItem, index) => {
-      if (branchLink[splittedItem] === undefined) {
-        if (splittedKey.length - 1 === index) {
-          branchLink[splittedItem] = value;
-        } else {
-          branchLink[splittedItem] = {};
-          branchLink = branchLink[splittedItem];
-        }
+      if (branchLink[splittedItem] !== undefined) {
+        branchLink = branchLink[splittedItem];
+        return;
+      }
+
+      if (splittedKey.length - 1 === index) {
+        branchLink[splittedItem] = value;
       } else {
+        branchLink[splittedItem] = {};
         branchLink = branchLink[splittedItem];
       }
     });
